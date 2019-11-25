@@ -16,7 +16,12 @@ h2{
     color: #e85c38;
     font-size: 30px;
 }
-
+.green{
+    color: green;
+}
+.red{
+    color: red;
+}
  /*
  ----------------------------------------------------------------------------------------------------------------------
  ---------------------------------                      HEADER                      -----------------------------------
@@ -60,13 +65,15 @@ header{
     color: white;
     transition: all 200ms ease-in;
 }
-h1{
+header h2{
     transform: scale(1);
     transition: all 200ms ease-in;
+    color: black;
 }
-h1:hover{
+header h2:hover{
     transform: scale(1.2);
     transition: all 200ms ease-in;
+    color: white;
 }
 
 /*
@@ -142,7 +149,7 @@ main{
     box-shadow: 7px 7px 3px 3px rgba(0,0,0,1);
 }
 .seemore{
-    background-color: ;
+
 }
 .author{
 
