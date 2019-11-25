@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Author;
-use App\Entity\Book;
 use App\Repository\AuthorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AuthorController extends AbstractController
@@ -26,11 +26,11 @@ class AuthorController extends AbstractController
 
     }
 
-/*
-----------------------------------------------------------------------------------------------------------------------
----------------------------------             METHODE UNE   (MARCHE PAS)           -----------------------------------
-----------------------------------------------------------------------------------------------------------------------
-*/
+    /*
+    ----------------------------------------------------------------------------------------------------------------------
+    ---------------------------------             METHODE UNE   (MARCHE PAS)           -----------------------------------
+    ----------------------------------------------------------------------------------------------------------------------
+    */
 
 //    /**
 //     * Je crée une route pour ma page qui n'affichera qu'un seul auteur via son ID.
@@ -61,18 +61,18 @@ class AuthorController extends AbstractController
 //                $author->getDeathDate()
 //            ]]);
 //    }
-/*
- * ----------------------------------------------------------------------------------------------------------------------
- * ---------------------------------                     METHODE DEUX                 -----------------------------------
- * ----------------------------------------------------------------------------------------------------------------------
-*/
+    /*
+     * ----------------------------------------------------------------------------------------------------------------------
+     * ---------------------------------                     METHODE DEUX                 -----------------------------------
+     * ----------------------------------------------------------------------------------------------------------------------
+    */
     /**
      * Je crée ma route pour l'auteur seul grace à son id.
      * @Route("/author/{id}", name="author")
      */
 
     //Je crée un fonction pour monter UN auteur en piochant dans le Répo Author et en indiquant qu'il faudra le $id et que ça sera un integer.
-    public function showAuthor(AuthorRepository $authorRepository,int $id)
+    public function showAuthor(AuthorRepository $authorRepository, int $id)
     {
         //Je crée une variable auteur en lui demandant d'aller simplement récup un élément dans le Répo Author. Que je défini comme étant l'id.
         $author = $authorRepository->findOneBy(['id' => $id]);
@@ -80,4 +80,35 @@ class AuthorController extends AbstractController
         //Je demande à me retourner le resultat sur la page 'author'.
         return $this->render('author.html.twig', ['author' => $author]);
     }
+    /*
+     * ----------------------------------------------------------------------------------------------------------------------
+     * ---------------------------------                AUTOR BY NAME                 -----------------------------------
+     * ----------------------------------------------------------------------------------------------------------------------
+    */
+
+    /**
+     * Je crée une route pour avoir mes auteurs par nom
+     * @Route("/authors_by_name",name="authors_by_name")
+     */
+
+    //Je crée une fonction qui appel le RépoBOOk en le passant dans la variable.
+    public function showBookByStyle(AuthorRepository $authorRepository, Request $request)
+    {
+        // Je crée une requette pour aller recup des param dans l'url grace à Query.
+        $name = $request->query->get('name');
+        $firstname = $request->query->get('firstname');
+        $biography = $request->query->get('biography');
+
+        // Appel la méthode créer dans le répo qui doit nous retourner tout les auteurs par name etc...
+        $authors = $authorRepository->getByName($name, $firstname, $biography);
+
+        //Nous retourne la réponse dans la page 'books' avec une wildcard.
+        return $this->render('authors.html.twig', [
+            'authors' => $authors,
+            'name' => $name,
+            'firstname' => $firstname,
+            'biography' => $biography
+        ]);
+    }
+
 }

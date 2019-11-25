@@ -14,6 +14,9 @@
             {% else %}
                 <p><em>Toujours vivant.</em></p>
             {% endif %}
+            <br>
+            <h4>Biographie:</h4>
+            <p>{{ author.biography }}</p>
         </div>
         <br>
         <a href="{{ path('authors') }}"><input type="button" value="Retour Authors" class="seemore"></a>

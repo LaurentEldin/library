@@ -19,7 +19,28 @@ class AuthorRepository extends ServiceEntityRepository
         parent::__construct($registry, Author::class);
     }
 
+    public function getByName($name, $firstname, $biography)
+    {
+        // On récupère le QueryBuilder car il permet de faire les resquet SQL.
+        $qb = $this->createQueryBuilder('author');
 
+        //On construit la requette sql mais en PHP.
+        $query = $qb->select('author')
+            //Traduire la requete en véritable requette SQL.
+            ->where('author.name LIKE :name')
+            ->andWhere('author.firstname LIKE :firstname')
+            ->andWhere('author.biography LIKE :biography')
+
+            //Executer la requette en BDD
+            ->setParameter('name', '%' . $name . '%')
+            ->setParameter('firstname', '%' . $firstname . '%')
+            ->setParameter('biography', '%' . $biography . '%' )
+            ->getQuery();
+
+        $resultats = $query->getArrayResult();
+
+        return $resultats;
+    }
 
     // /**
     //  * @return Author[] Returns an array of Author objects
