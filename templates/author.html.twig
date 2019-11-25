@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %}One Author{% endblock %}
+{% block main %}
+
+    <div class="mainauthor">
+        <div class="author">
+            <h2>{{ author.name }} {{ author.firstname }}</h2>
+        </div>
+        <br>
+        <div class="detailauthor">
+            <p><em>Née le {{ author.birthDate |date ("d/m/y") }}.</em></p>
+            {% if author.deathDate is not null %}
+                <p><em>Mort en {{ author.deathDate |date ("d/m/y") }}</em></p>
+            {% else %}
+                <p><em>Toujours vivant.</em></p>
+            {% endif %}
+        </div>
+        <br>
+        <a href="{{ path('authors') }}"><input type="button" value="Retour Authors" class="seemore"></a>
+    </div>
+{% endblock %}

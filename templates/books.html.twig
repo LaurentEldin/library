@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %}Books{% endblock %}
+{% block main %}
+    {% for book in books %}
+        <div class="mainbook">
+            <div class="titrebook">
+                <h2>{{ book.title }}</h2>
+            </div>
+            <br>
+            <div class="categoriebook">
+                <h3>Caractéristiques :</h3>
+                <em>Nombre de pages : {{ book.nbpages }}pages.</em>
+                <br>
+                <em>Catégorie : {{ book.style }}.</em>
+            </div>
+            <br>
+            <div class="dispobook">
+                {% if book.InStock == true %}
+                    <em><p>Statut : <span class="green">disponible</span></p></em>
+                {% elseif book.InStock == false %}
+                    <em><p>Statut : <span class="red">indisponible</span></p></em>
+                {% endif %}
+            </div>
+            <br>
+            <a href="{{ path('book', {'id':book.id}) }}"><input type="button" value="plus d'info" class="seemore"></a>
+        </div>
+    {% endfor %}
+{% endblock %}
