@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Book;
 use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use function Sodium\crypto_box_publickey_from_secretkey;
 
 class BookController extends AbstractController
 {
@@ -76,5 +78,35 @@ class BookController extends AbstractController
 
         //Je demande de me retourner le résultat sur la page book.
         return $this->render('book.html.twig', ['book'=>$book]);
+    }
+
+
+/*
+----------------------------------------------------------------------------------------------------------------------
+---------------------------------                   GETBOOK BY                     -----------------------------------
+----------------------------------------------------------------------------------------------------------------------
+*/
+    /**
+     * Je crée une route pour avoir mes livres triés par style.
+     * @Route("/books_by_style",name="books_by_style")
+     */
+
+    //Je crée une fonction qui appel le RépoBOOk en le passant dans la variable.
+    public function showBookByStyle(BookRepository $bookRepository, Request $request)
+    {
+        // Je crée une requette pour aller recup le style dans l'url grace à Query.
+        $style = $request->query->get('style');
+        $title = $request->query->get('title');
+        $inStock = $request->query->get('inStock');
+
+        // Appel la méthode créer dans le répo qui doit nous retourner tout les livres trier par $style.
+        $books = $bookRepository->getByStyle($style, $title, $inStock);
+        dump($inStock);
+        //Nous retourne la réponse dans la page 'books' avec une wildcard.
+        return $this->render('books.html.twig', [
+            'books' => $books,
+            'title' => $title,
+            'inStock' => $inStock
+        ]);
     }
 }

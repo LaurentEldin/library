@@ -8,15 +8,15 @@
         <br>
         <div class="categoriebook">
             <h3>Caractéristiques :</h3>
-            <em>Nombre de pages : {{ book.nbpages }}pages.</em>
+            <em>Nombre de pages : {{ book.nbPages }}pages.</em>
             <br>
             <em>Catégorie : {{ book.style }}.</em>
         </div>
         <br>
         <div class="dispobook">
-            {% if book.InStock == true %}
+            {% if book.inStock == true %}
                 <em><p>Statut : <span class="green">disponible</span></p></em>
-            {% elseif book.InStock == false %}
+            {% elseif book.inStock == false %}
                 <em><p>Statut : <span class="red">indisponible</span></p></em>
             {% endif %}
         </div>

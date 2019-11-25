@@ -3,6 +3,18 @@
 
 
 {% block title %}Authors{% endblock %}
+
+{% block recherche %}
+    <div class="formtop">
+        <form action="{{ path('books_by_style') }}" class="bystyle">
+            <label for="nom">Nom</label>
+            <input type="text" placeholder="Nom de l'auteur" name="nom">
+            <label for="prenom">Prenom</label>
+            <input type="text" placeholder="Prenom de l'auteur" name="prenom">
+        </form>
+    </div>
+{% endblock %}
+
 {% block main %}
     {% for author in authors %}
         <div class="mainauthor">
