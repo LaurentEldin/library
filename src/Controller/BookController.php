@@ -101,7 +101,7 @@ class BookController extends AbstractController
 
         // Appel la méthode créer dans le répo qui doit nous retourner tout les livres trier par $style.
         $books = $bookRepository->getByStyle($style, $title, $inStock);
-        dump($inStock);
+
         //Nous retourne la réponse dans la page 'books' avec une wildcard.
         return $this->render('books.html.twig', [
             'books' => $books,

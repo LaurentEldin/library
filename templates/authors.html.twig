@@ -11,6 +11,8 @@
             <input type="text" placeholder="Nom de l'auteur" name="name">
             <label for="firstname">Prenom</label>
             <input type="text" placeholder="Prenom de l'auteur" name="firstname">
+            <label for="biograpy">Biographie</label>
+            <input type="text" placeholder="biography" name="biography">
             <input type="submit" value="rechercher">
         </form>
     </div>
@@ -30,6 +32,9 @@
                 {% else %}
                     <p><em>Toujours vivant.</em></p>
                 {% endif %}
+                <br>
+                <h4>Biographie:</h4>
+                <p>{{ author.biography }}</p>
             </div>
             <br>
             <a href="{{ path('author', {'id':author.id}) }}"><input type="button" value="plus d'info" class="seemore"></a>

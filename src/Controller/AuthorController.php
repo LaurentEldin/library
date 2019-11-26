@@ -6,7 +6,9 @@ use App\Entity\Author;
 use App\Repository\AuthorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class AuthorController extends AbstractController
 {
@@ -111,4 +113,26 @@ class AuthorController extends AbstractController
         ]);
     }
 
+    /*
+     * ----------------------------------------------------------------------------------------------------------------------
+     * ---------------------------------                CREATE AUTHOR                     -----------------------------------
+     * ----------------------------------------------------------------------------------------------------------------------
+    */
+
+    /**
+     * @Route("/authors", name="create_author")
+     */
+    public function createAuthor(ValidatorInterface $validator, AuthorRepository $authorRepository) : Response
+    {
+
+        // pour rajouter des param de l'entité author.
+        $author->setName('Barre');
+        $author->setFirstname('Léni');
+        $author->setBirthDate('31-12-1999');
+        $author->setDeathDate(null);
+        $author->setBiography('Toujours du monde au balcon');
+
+        dump($author);
+        return $this->render('authors.html.twig');
+    }
 }

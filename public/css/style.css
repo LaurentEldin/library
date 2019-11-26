@@ -17,10 +17,10 @@ h2{
     font-size: 30px;
 }
 .green{
-    color: green;
+    color: #38da1d;
 }
 .red{
-    color: red;
+    color: #e85c38;
 }
  /*
  ----------------------------------------------------------------------------------------------------------------------
@@ -95,7 +95,7 @@ main{
     background-color: #255a7a;
     color: white;
     border-radius: 20px;
-    height: 200px;
+    height: 250px;
     width: 300px;
     display: flex;
     flex-direction: column;
@@ -143,7 +143,7 @@ main{
     background-color: #255a7a;
     color: white;
     border-radius: 20px;
-    height: 200px;
+    height: 250px;
     width: 300px;
     display: flex;
     flex-direction: column;

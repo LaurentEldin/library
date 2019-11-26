@@ -37,7 +37,7 @@ class AuthorRepository extends ServiceEntityRepository
             ->setParameter('biography', '%' . $biography . '%' )
             ->getQuery();
 
-        $resultats = $query->getArrayResult();
+        $resultats = $query->getResult();
 
         return $resultats;
     }

@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="0af17222-36ec-443e-8ab4-4fab7c16e4cd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/AuthorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AuthorController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/BookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BookController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/AuthorRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/AuthorRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/author.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/author.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/authors.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/authors.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/books.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/books.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -230,7 +234,7 @@
       <updated>1574344468218</updated>
       <workItem from="1574344469706" duration="780000" />
       <workItem from="1574349397587" duration="498000" />
-      <workItem from="1574349930416" duration="41865000" />
+      <workItem from="1574349930416" duration="45996000" />
     </task>
     <task id="LOCAL-00001" summary="mise à jour css">
       <created>1574547460865</created>
@@ -267,7 +271,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574698009708</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add searchbar for authors">
+      <created>1574699235827</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1574699235827</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,6 +301,7 @@
     <MESSAGE value="mise à jour css" />
     <MESSAGE value="mise à jour" />
     <MESSAGE value="add searchbar for searching books by style and dispo and title." />
-    <option name="LAST_COMMIT_MESSAGE" value="add searchbar for searching books by style and dispo and title." />
+    <MESSAGE value="add searchbar for authors" />
+    <option name="LAST_COMMIT_MESSAGE" value="add searchbar for authors" />
   </component>
 </project>
