@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block title %}One Book{% endblock %}
 {% block main %}
+    {% if message is defined %}
+    {{ message }}
+    {% endif %}
     <div class="mainbook">
         <div class="titrebook">
             <h2>{{ book.title }}</h2>

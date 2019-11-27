@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block title %}One Author{% endblock %}
 {% block main %}
-
+    {% if message is defined %}
+        {{ message }}
+    {% endif %}
     <div class="mainauthor">
         <div class="author">
             <h2>{{ author.name }} {{ author.firstname }}</h2>

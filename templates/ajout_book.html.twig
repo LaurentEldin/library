@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <form action="{{ path('create_book') }}" method="post" class="formnewbook">
+        <label for="title">Titre</label>
+        <br>
+        <input type="text" name="title" id="title">
+        <br>
+        <br>
+        <label for="style">Style</label>
+        <br>
+        <input type="text" name="style" id="style">
+        <br>
+        <br>
+        <label for="nbPages">Nb de pages</label>
+        <br>
+        <input type="text" name="nbPages" id="nbPages">
+        <br>
+        <br>
+        <label for=inStock"">Disponible ? </label>
+        <select name="inStock" id="inStock">
+            <option value="oui">oui</option>
+            <option value="non">non</option>
+        </select>
+        <br>
+        <br>
+        <input type="submit" value="enregistrer">
+    </form>
+{% endblock %}

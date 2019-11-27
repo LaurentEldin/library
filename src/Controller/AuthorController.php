@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Author;
 use App\Repository\AuthorRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,6 +13,13 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class AuthorController extends AbstractController
 {
+
+    /*
+    ----------------------------------------------------------------------------------------------------------------------
+    ---------------------------------             AFFICHER TOUT LES AUTHORS            -----------------------------------
+    ----------------------------------------------------------------------------------------------------------------------
+    */
+
     /**
      * Je crée une route pour ma page avec tout les auteurs.
      * @Route("/authors", name="authors")
@@ -28,44 +36,10 @@ class AuthorController extends AbstractController
 
     }
 
-    /*
-    ----------------------------------------------------------------------------------------------------------------------
-    ---------------------------------             METHODE UNE   (MARCHE PAS)           -----------------------------------
-    ----------------------------------------------------------------------------------------------------------------------
-    */
 
-//    /**
-//     * Je crée une route pour ma page qui n'affichera qu'un seul auteur via son ID.
-//     * @Route("/author/{id}", name="author")
-//     */
-
-//    // Je crée une fonction pour afficher une livre via son $id, et je précise que je n'attend qu'un integer en param.
-//    public function show(int $id)
-//    {
-//        // J'indique le chemin pour aller récup les bons ID.
-//        $author = $this->getDoctrine()
-//            ->getRepository(Author::class)
-//            ->find($id);
-//
-//        //J'installe une sécurité au cas ou l'on me demande un ID qui n'existe pas.
-//        if (!$author) {
-//            throw $this->createNotFoundException(
-//                "Désolé, il n'existe aucune référence pour l'id numéro : " . $id
-//            );
-//        }
-//
-//        //Je retourne le resultat sur la page "author" en demandant tout les param de l'entité "Author".
-//        return $this->render('author.html.twig', ['author' =>
-//            [$author->getId(),
-//                $author->getName(),
-//                $author->getFirstname(),
-//                $author->getBirthDate(),
-//                $author->getDeathDate()
-//            ]]);
-//    }
     /*
      * ----------------------------------------------------------------------------------------------------------------------
-     * ---------------------------------                     METHODE DEUX                 -----------------------------------
+     * ---------------------------------                AFFICHER UN AUTEUR                -----------------------------------
      * ----------------------------------------------------------------------------------------------------------------------
     */
     /**
@@ -84,7 +58,7 @@ class AuthorController extends AbstractController
     }
     /*
      * ----------------------------------------------------------------------------------------------------------------------
-     * ---------------------------------                AUTOR BY NAME                 -----------------------------------
+     * ---------------------------------                  AUTHOR BY NAME                  -----------------------------------
      * ----------------------------------------------------------------------------------------------------------------------
     */
 
@@ -120,19 +94,119 @@ class AuthorController extends AbstractController
     */
 
     /**
-     * @Route("/authors", name="create_author")
+     * On crée une nouvelle route pour créer un nouvel author.
+     * @Route("authors/create_author", name="create_author")
      */
-    public function createAuthor(ValidatorInterface $validator, AuthorRepository $authorRepository) : Response
+
+    //Je crée une méthode pour ajouter un author à ma BDD à l'aide en EntityManager qui sert à Gérer les Entités.
+    // J'utilise le Request pour récup les données passé dans le GET ou le POST, àa servira pour créer un form.
+    public function showNewAuthor(EntityManagerInterface $entityManager, Request $request)
     {
+        //Je crée une nouvelle instance de ma classe book en utilisant NEW.
+        $author = new Author();
 
-        // pour rajouter des param de l'entité author.
-        $author->setName('Barre');
-        $author->setFirstname('Léni');
-        $author->setBirthDate('31-12-1999');
-        $author->setDeathDate(null);
-        $author->setBiography('Toujours du monde au balcon');
+        //"request" pour recup une méthode POST ... "query" pour recup une méthode GET
+        $name= $request->request->get('name');
+        $firstname= $request->request->get('firstname');
+        $birthDate= $request->request->get('birthDate');
+        $deathDate= $request->request->get('deathDate');
+        $biography= $request->request->get('biography');
 
-        dump($author);
-        return $this->render('authors.html.twig');
+        //Je passe à ma variable les setteurs de ma classe book pour en créer un nouveau.
+        $author->setName($name);
+        $author->setFirstname($firstname);
+        $author->setBirthDate(new \DateTime($birthDate));
+        $author->setDeathDate(new \DateTime($deathDate));
+        $author->setBiography($biography);
+
+        //J'uilise le persiste pour stocker temporairement mon instance (comme Make:Migration)
+        $entityManager->persist($author);
+
+        //Et maintenant le flush, pour CONFIRMER l'envoie des données dans l'entité. (comme Migration:Migrate).
+        $entityManager->flush();
+        // Les deux vont tout le temps ensemble.
+
+        //Penser à bien fermer la méthode par une réponse (vardump / dump) pour tester si cela fonctionne.
+        return $this->render('author.html.twig', [
+            'author' => $author,
+            'message' => "Merci, votre auteur a bien était enregistré"]);
+    }
+
+    /*
+        ----------------------------------------------------------------------------------------------------------------------
+        ---------------------------------                   FORM AUTHOR                    -----------------------------------
+        ----------------------------------------------------------------------------------------------------------------------
+        */
+
+    /**
+     * je crée une nouvelle route pour acceder à mon formulaire de création d'un auteur.
+     * @Route("books/form_author",name="form_author")
+     */
+    // Je crée une méthode pour afficher le formulaire dans la page twig que je souhaite.
+    public function createNewAuthor()
+    {
+        return $this->render('ajout_auteur.html.twig');
+    }
+
+
+/*
+    ----------------------------------------------------------------------------------------------------------------------
+    ---------------------------------                   REMOVE AUTHOR                  -----------------------------------
+    ----------------------------------------------------------------------------------------------------------------------
+ */
+
+    /**
+     *
+     * @Route("authors/remove_author/{id}",name="remove_author")
+     */
+    public function removeAuthor(AuthorRepository $authorRepository, EntityManagerInterface $entityManager, $id)
+    {
+        $author = $authorRepository->find($id);
+
+        $entityManager->remove($author);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('authors');
+
+    }
+    /*
+        ----------------------------------------------------------------------------------------------------------------------
+        ---------------------------------                   MODIFIER AUTHOR                -----------------------------------
+        ----------------------------------------------------------------------------------------------------------------------
+     */
+
+    /**
+     *
+     * @Route("/books/modif_author", name="modif_author")
+     */
+
+    public function showModifAuthor()
+    {
+        return
+    }
+
+    public function modifAuthor(EntityManagerInterface $entityManager, Request $request)
+    {
+        $author = new Author();
+
+        $name= $request->request->get('name');
+        $firstname= $request->request->get('firstname');
+        $birthDate= $request->request->get('birthDate');
+        $deathDate= $request->request->get('deathDate');
+        $biography= $request->request->get('biography');
+
+        $author->setName($name);
+        $author->setFirstname($firstname);
+        $author->setBirthDate(new \DateTime($birthDate));
+        $author->setDeathDate(new \DateTime($deathDate));
+        $author->setBiography($biography);
+
+        $entityManager->persist($author);
+
+        $entityManager->flush();
+
+        return $this->render('author.html.twig', [
+            'author' => $author,
+            'message' => "Merci, votre auteur a bien était mis à jour"]);
     }
 }

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <form action="{{ path('create_author') }}" method="post" class="formnewbook">
+        <label for="name">Nom</label>
+        <br>
+        <input type="text" name="name" id="name">
+        <br>
+        <br>
+        <label for="firstname">Prénom</label>
+        <br>
+        <input type="text" name="firstname" id="firstname">
+        <br>
+        <br>
+        <label for="birthDate">Date de naissance</label>
+        <br>
+        <input type="date" name="birthDate" id="birthDate">
+        <br>
+        <br>
+        <label for="deathDate">Mort en </label>
+        <br>
+        <input type="date" name="deathDate" id="deathDate">
+        <br>
+        <br>
+        <label for="biography">Biography</label>
+        <br>
+        <textarea name="biography" id="biography" cols="30" rows="10"></textarea>
+        <br>
+        <br>
+        <input type="submit" value="enregistrer">
+    </form>
+{% endblock %}

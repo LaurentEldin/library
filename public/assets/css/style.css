@@ -40,6 +40,7 @@ header{
     align-items: center;
     padding: 20px;
     height: 20vh;
+    color: black;
 }
 #titre{
     padding: 0 20px;
@@ -131,6 +132,16 @@ main{
     justify-content: space-evenly;
     align-items: center;
 }
+.formnewbook{
+    padding: 60px;
+}
+.newbook{
+    padding: 10px 20px;
+    background-color: lightgrey;
+    justify-self: flex-end;
+    border-radius: 20px;
+    color: black;
+}
 
 /*
  ----------------------------------------------------------------------------------------------------------------------
@@ -187,6 +198,18 @@ main{
         transform: translateX(-50%);
     }
 }
+.indexbutton{
+    display: flex;
+    justify-content: space-evenly;
+    width: 500px;
+}
+.new{
+    padding: 10px 20px;
+    background-color: lightgrey;
+    border-radius: 20px;
+    color: black;
+}
+
 /*
  ----------------------------------------------------------------------------------------------------------------------
  ---------------------------------                      MAIN ERROR                  -----------------------------------

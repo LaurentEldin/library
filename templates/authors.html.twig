@@ -15,6 +15,7 @@
             <input type="text" placeholder="biography" name="biography">
             <input type="submit" value="rechercher">
         </form>
+        <a href="{{ path('form_author') }}" class="new">Ajouter un auteur</a>
     </div>
 {% endblock %}
 
@@ -38,6 +39,8 @@
             </div>
             <br>
             <a href="{{ path('author', {'id':author.id}) }}"><input type="button" value="plus d'info" class="seemore"></a>
+            <a href="{{ path('author', {'id':author.id}) }}"><input type="button" value="modifier" class="seemore"></a>
+            <a href="{{ path('remove_author', {'id':author.id}) }}"><input type="button" value="supprimer"></a>
         </div>
 
     {% endfor %}
