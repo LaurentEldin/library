@@ -1,23 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    <form action="{{ path('create_book') }}" method="post" class="formnewbook">
+    <form action="{% if book is defined %}{{ path('admin_save_modif_book') }}{% else %}{{ path('admin_create_book') }}{% endif %}" method="post" class="formnewbook">
+        <input type="text" hidden name="id" value="{% if book is defined %}{{ book.id }}{% endif %}">
         <label for="title">Titre</label>
         <br>
-        <input type="text" name="title" id="title">
+        <input type="text" name="title" id="title" value="{% if book is defined %}{{ book.title }}{% endif %}">
         <br>
         <br>
         <label for="style">Style</label>
         <br>
-        <input type="text" name="style" id="style">
+        <input type="text" name="style" id="style" value="{% if book is defined %}{{ book.style }}{% endif %}">
         <br>
         <br>
         <label for="nbPages">Nb de pages</label>
         <br>
-        <input type="text" name="nbPages" id="nbPages">
+        <input type="text" name="nbPages" id="nbPages" value="{% if book is defined %}{{ book.nbPages }}{% endif %}">
         <br>
         <br>
-        <label for=inStock"">Disponible ? </label>
+        <label for="inStock" value="{% if book is defined %}{{ book.inStock }}{% endif %}">Disponible ? </label>
         <select name="inStock" id="inStock">
             <option value="oui">oui</option>
             <option value="non">non</option>

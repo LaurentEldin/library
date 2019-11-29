@@ -3,10 +3,10 @@
 {% block title %}Library{% endblock %}
 {% block main %}
     <main class="mainindex">
-        <h1>Welcome to the Library</h1>
+        <p>Welcome to the Library</p>
     </main>
     <div class="indexbutton">
-        <a href="{{ path('form_book') }}" class="new">Ajouter un livre</a>
-        <a href="{{ path('form_author') }}" class="new">Ajouter un auteur</a>
+        <a href="{{ path('admin_update_book') }}" class="new">Ajouter un livre</a>
+        <a href="{{ path('admin_update_author') }}" class="new">Ajouter un auteur</a>
     </div>
 {% endblock %}

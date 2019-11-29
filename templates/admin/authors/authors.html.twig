@@ -6,16 +6,16 @@
 
 {% block recherche %}
     <div class="formtop">
-        <form action="{{ path('authors_by_name') }}" class="bystyle">
+        <form action="{{ path('admin_authors_by_name') }}" class="bystyle">
             <label for="name">Nom</label>
             <input type="text" placeholder="Nom de l'auteur" name="name">
             <label for="firstname">Prenom</label>
             <input type="text" placeholder="Prenom de l'auteur" name="firstname">
             <label for="biograpy">Biographie</label>
-            <input type="text" placeholder="biography" name="biography">
+            <input type="text" placeholder="Biographie" name="biography">
             <input type="submit" value="rechercher">
         </form>
-        <a href="{{ path('form_author') }}" class="new">Ajouter un auteur</a>
+        <a href="{{ path('admin_update_author') }}" class="new">Ajouter un auteur</a>
     </div>
 {% endblock %}
 
@@ -33,14 +33,12 @@
                 {% else %}
                     <p><em>Toujours vivant.</em></p>
                 {% endif %}
-                <br>
                 <h4>Biographie:</h4>
                 <p>{{ author.biography }}</p>
             </div>
-            <br>
-            <a href="{{ path('author', {'id':author.id}) }}"><input type="button" value="plus d'info" class="seemore"></a>
-            <a href="{{ path('author', {'id':author.id}) }}"><input type="button" value="modifier" class="seemore"></a>
-            <a href="{{ path('remove_author', {'id':author.id}) }}"><input type="button" value="supprimer"></a>
+            <a href="{{ path('admin_author', {'id':author.id}) }}"><input type="button" value="plus d'info" class="seemoreinfo"></a>
+            <a href="{{ path('admin_authors_update_form', {'id':author.id}) }}"><input type="button" value="modifier" class="seemoreupdate"></a>
+            <a href="{{ path('admin_remove_author', {'id':author.id}) }}"><input type="button" value="supprimer" class="seemoresupp"></a>
         </div>
 
     {% endfor %}

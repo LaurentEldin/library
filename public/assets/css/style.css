@@ -12,8 +12,11 @@
 a{
     text-decoration: none;
 }
+a:hover{
+    text-decoration: none;
+}
 h2{
-    color: #e85c38;
+    color: #0b0b0b;
     font-size: 30px;
 }
 .green{
@@ -22,6 +25,23 @@ h2{
 .red{
     color: #e85c38;
 }
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+    padding: 0 10px;
+    color: #f1f2f3;
+    font-size: 20px;
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+}
+input[type="submit"]{
+    cursor:pointer;
+    padding:3px 15px;
+    background: #f1f2f3;
+    border-radius: 20px;
+    margin: 0 20px;
+    box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
+}
+
  /*
  ----------------------------------------------------------------------------------------------------------------------
  ---------------------------------                      HEADER                      -----------------------------------
@@ -29,7 +49,7 @@ h2{
  */
 
 header{
-    background-color: #255a7a;
+    background: url("https://p0.storage.canalblog.com/02/93/1080399/83385214_o.jpg");
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,7 +75,7 @@ header{
     align-items: center;
     width: 100%;
     height: 10vh;
-    background-color: #e85c38;
+    background-color: #203163;
 }
 .navbar a{
     color: black;
@@ -69,7 +89,7 @@ header{
 header h2{
     transform: scale(1);
     transition: all 200ms ease-in;
-    color: black;
+    color: white;
 }
 header h2:hover{
     transform: scale(1.2);
@@ -84,7 +104,7 @@ header h2:hover{
  */
 
 main{
-    background-color: #f1f2f3;
+    background: url("https://cdn.pixabay.com/photo/2016/09/10/12/40/grass-1659054_960_720.jpg") 0 fixed ;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
@@ -92,17 +112,19 @@ main{
     padding: 50px;
 }
 .mainbook{
-    box-shadow: 5px 5px 2px 2px rgba(0,0,0,1);
-    background-color: #255a7a;
-    color: white;
-    border-radius: 20px;
-    height: 250px;
+    background-image: url("https://i.pinimg.com/originals/46/91/27/469127ec4e81b9c90fc76de8630d7819.png");
+    background-size: cover;
+    color: #ffffff;
+    border-radius: 10px;
+    height: 400px;
     width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 30px;
+    padding: 10px;
+    text-align: center;
     color: #f1f2f3;
     transition: all 200ms ease-in;
     transform: scale(1);
@@ -110,23 +132,31 @@ main{
 .mainbook:hover{
     transition: all 200ms ease-in;
     transform: scale(1.1);
-    box-shadow: 7px 7px 3px 3px rgba(0,0,0,1);
 }
 .categoriebook{
     text-align: center;
+    margin-left: 40px;
+    color: #f1f2f3;
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
 }
 .dispobook{
-
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
 }
-.titrebook{
-
+.titrebook h2{
+    color: #c49935;
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+    margin-left: 33px;
 }
-.bystyle{
+.bystyle {
     text-align: center;
 }
 .formtop{
+    position: sticky;
     width: 100%;
-    background-color: slategrey;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: #274d8c;
     padding: 10px;
     display: flex;
     justify-content: space-evenly;
@@ -150,17 +180,18 @@ main{
  */
 
 .mainauthor{
-    box-shadow: 5px 5px 2px 2px rgba(0,0,0,1);
-    background-color: #255a7a;
-    color: white;
-    border-radius: 20px;
-    height: 250px;
+    background: url("https://images-na.ssl-images-amazon.com/images/I/61baaccDQxL._SL1200_.jpg");
+    background-size: cover;
+    border-radius: 10px;
+    height: 500px;
     width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 30px;
+    padding: 10px;
+    text-align: center;
     color: #f1f2f3;
     transition: all 200ms ease-in;
     transform: scale(1);
@@ -168,16 +199,43 @@ main{
 .mainauthor:hover{
     transition: all 200ms ease-in;
     transform: scale(1.1);
-    box-shadow: 7px 7px 3px 3px rgba(0,0,0,1);
 }
-.seemore{
+/*.mainauthor:nth-of-type(odd){*/
+/*    background-color: red;*/
+/*}*/
 
+.seemoreinfo{
+    margin: 5px;
+    background-color: cornflowerblue;
+    border-radius: 20px;
+    padding: 2px 10px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 1px 1px rgba(0,0,0,0.6);
 }
-.author{
-
+.seemoreupdate{
+    margin: 5px;
+    background-color: orange;
+    border-radius: 20px;
+    padding: 2px 10px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 1px 1px rgba(0,0,0,0.6);
+}
+.seemoresupp{
+    margin: 5px;
+    background-color: red;
+    border-radius: 20px;
+    padding: 2px 10px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 1px 1px rgba(0,0,0,0.6);
+}
+.author h2{
+    color: #274d8c;
+    text-shadow:#274d8c 1px 0 10px;
 }
 .detailauthor{
     text-align: center;
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+    color: #f1f2f3;
 }
 /*
  ----------------------------------------------------------------------------------------------------------------------
@@ -188,16 +246,19 @@ main{
 .mainindex{
     height: 50vh;
     width: 80%;
+    color: white;
+    font-size: 100px;
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
 }
-.mainindex{
-    transform: translateX(+50%);
-    animation: spin 8s linear alternate infinite;
-}
-@keyframes spin {
-    to{
-        transform: translateX(-50%);
-    }
-}
+/*.mainindex{*/
+/*    transform: translateX(+50%);*/
+/*    animation: spin 8s linear alternate infinite;*/
+/*}*/
+/*@keyframes spin {*/
+/*    to{*/
+/*        transform: translateX(-50%);*/
+/*    }*/
+/*}*/
 .indexbutton{
     display: flex;
     justify-content: space-evenly;
@@ -208,6 +269,7 @@ main{
     background-color: lightgrey;
     border-radius: 20px;
     color: black;
+    box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
 }
 
 /*
@@ -244,7 +306,7 @@ a.backButton{
  */
 
 footer{
-    background-color: #e85c38;
+    background-color: #203163;
     height: 10vh;
     display: flex;
     justify-content: center;
@@ -252,8 +314,11 @@ footer{
 }
 
 footer a{
-    color: black;
+    color: white;
+    transition: all 200ms ease-in;
+
 }
 footer a:hover{
-    color: white;
+    color: black;
+    transition: all 200ms ease-in;
 }

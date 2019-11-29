@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    <form action="{{ path('create_author') }}" method="post" class="formnewbook">
+    <form action="{{ path('admin_create_author') }}" method="post" class="formnewbook">
         <label for="name">Nom</label>
         <br>
         <input type="text" name="name" id="name">

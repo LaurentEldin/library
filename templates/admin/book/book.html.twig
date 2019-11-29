@@ -22,8 +22,10 @@
             {% elseif book.inStock == false %}
                 <em><p>Statut : <span class="red">indisponible</span></p></em>
             {% endif %}
+            Auteur : {{ book.author.fullName }}
         </div>
         <br>
-        <a href="{{ path('books') }}"><input type="button" value="Retour Books" class="seemore"></a>
+        <a href="{{ path('admin_author',{'id':book.author.id}) }}"><input type="button" value="voir son auteur" class="seemoreupdate"></a>
+        <a href="{{ path('admin_books') }}"><input type="button" value="Retour Books" class="seemoreinfo"></a>
     </div>
 {% endblock %}

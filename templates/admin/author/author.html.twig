@@ -21,9 +21,7 @@
             <p>{{ author.biography }}</p>
         </div>
         <br>
-        <span>
-            <input type="button" value="voir ses livres">
-            <a href="{{ path('authors') }}"><input type="button" value="Retour Authors" class="seemore"></a>
-        </span>
+            <input type="button" value="voir ses livres" class="seemoreupdate">
+            <a href="{{ path('admin_authors') }}"><input type="button" value="Retour Authors" class="seemoreinfo"></a>
     </div>
 {% endblock %}

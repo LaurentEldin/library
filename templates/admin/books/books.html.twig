@@ -4,7 +4,9 @@
 
 {% block recherche %}
     <div class="formtop">
-        <form action="{{ path('books_by_style') }}" class="bystyle">
+        <form action="{{ path('admin_books_by_style') }}" class="bystyle">
+            <label for="author">Auteur</label>
+            <input type="text"  placeholder="Auteur" name="author">
             <label for="style">Style</label>
             <input type="text" placeholder="Style du livre" name="style">
             <label for="title">Titre</label>
@@ -18,7 +20,7 @@
             {% endif %}>
             <input type="submit" value="rechercher">
         </form>
-        <a href="{{ path('form_book') }}" class="newbook">Ajouter un livre</a>
+        <a href="{{ path('admin_update_book') }}" class="new">Ajouter un livre</a>
     </div>
 {% endblock %}
 
@@ -31,12 +33,10 @@
             </div>
             <br>
             <div class="categoriebook">
-                <h3>Caractéristiques :</h3>
+                <h5>Caractéristiques :</h5>
                 <em>Nombre de pages : {{ book.nbPages }}pages.</em>
-                <br>
                 <em>Catégorie : {{ book.style }}.</em>
             </div>
-            <br>
             <div class="dispobook">
                 {% if book.inStock == true %}
                     <em><p><span class="green">disponible</span></p></em>
@@ -44,16 +44,15 @@
                     <em><p><span class="red">indisponible</span></p></em>
                 {% endif %}
             </div>
-            <br>
-            <a href="{{ path('book', {'id':book.id}) }}"><input type="button" value="plus d'info" class="seemore"></a>
-            <a href="{{ path('book', {'id':book.id}) }}"><input type="button" value="modifier" class="seemore"></a>
-            <a href="{{ path('remove_book', {'id':book.id}) }}"><input type="button" value="supprimer"></a>
+            <a href="{{ path('admin_book', {'id':book.id}) }}"><input type="button" value="plus d'info" class="seemoreinfo"></a>
+            <a href="{{ path('admin_books_update_form', {'id':book.id}) }}"><input type="button" value="modifier" class="seemoreupdate"></a>
+            <a href="{{ path('admin_remove_book', {'id':book.id}) }}"><input type="button" value="supprimer" class="seemoresupp"></a>
         </div>
     {% endfor %}
 {% else %}
     <div class="mainerror">
         <p>Désolé, cette catégorie n'existe pas</p>
-        <a href="{{ path('books') }}" class="backButton">Retour accueil books</a>
+        <a href="{{ path('admin_books') }}" class="backButton">Retour accueil books</a>
     </div>
 {% endif %}
 {% endblock %}

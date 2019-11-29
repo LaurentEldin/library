@@ -19,7 +19,7 @@ class BookRepository extends ServiceEntityRepository
         parent::__construct($registry, Book::class);
     }
 
-    public function getByStyle($style, $title, $inStock)
+    public function getByStyle($style, $title, $inStock, $author)
     {
         // On récupère le QueryBuilder car il permet de faire les resquet SQL.
         $qb = $this->createQueryBuilder('book');
@@ -29,10 +29,12 @@ class BookRepository extends ServiceEntityRepository
             //Traduire la requete en véritable requette SQL.
             ->where('book.style LIKE :style')
             ->andWhere('book.title LIKE :title')
+            ->andWhere('book.author LIKE :author')
 
             //Executer la requette en BDD
             ->setParameter('style', '%' . $style . '%')
-            ->setParameter('title', '%' . $title . '%');
+            ->setParameter('title', '%' . $title . '%')
+            ->setParameter('author','%' . $author . '%');
 
         //Boucle pour savoir si le livre est dispo ou pas.
         if ($inStock === 'ok') {

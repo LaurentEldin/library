@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\admin\authors;
 
 use App\Entity\Author;
+use App\Form\AuthorType;
 use App\Repository\AuthorRepository;
+use App\Repository\BookRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +24,7 @@ class AuthorController extends AbstractController
 
     /**
      * Je crée une route pour ma page avec tout les auteurs.
-     * @Route("/authors", name="authors")
+     * @Route("admin/authors", name="admin_authors")
      */
 
     // Je crée une fonction pour afficher tout mes auteurs.
@@ -32,7 +34,7 @@ class AuthorController extends AbstractController
         $authors = $authorRepository->findAll();
 
         //Je demande d'afficher ce résultat sur la page "authors.html.twig" en instanciant ma variable $authors par 'authors'
-        return $this->render('authors.html.twig', ['authors' => $authors]);
+        return $this->render('admin/authors/authors.html.twig', ['authors' => $authors]);
 
     }
 
@@ -44,7 +46,7 @@ class AuthorController extends AbstractController
     */
     /**
      * Je crée ma route pour l'auteur seul grace à son id.
-     * @Route("/author/{id}", name="author")
+     * @Route("admin/author/{id}", name="admin_author")
      */
 
     //Je crée un fonction pour monter UN auteur en piochant dans le Répo Author et en indiquant qu'il faudra le $id et que ça sera un integer.
@@ -54,7 +56,7 @@ class AuthorController extends AbstractController
         $author = $authorRepository->findOneBy(['id' => $id]);
         dump($author);
         //Je demande à me retourner le resultat sur la page 'author'.
-        return $this->render('author.html.twig', ['author' => $author]);
+        return $this->render('admin/author/author.html.twig', ['author' => $author]);
     }
     /*
      * ----------------------------------------------------------------------------------------------------------------------
@@ -64,7 +66,7 @@ class AuthorController extends AbstractController
 
     /**
      * Je crée une route pour avoir mes auteurs par nom
-     * @Route("/authors_by_name",name="authors_by_name")
+     * @Route("admin/authors_by_name",name="admin_authors_by_name")
      */
 
     //Je crée une fonction qui appel le RépoBOOk en le passant dans la variable.
@@ -79,7 +81,7 @@ class AuthorController extends AbstractController
         $authors = $authorRepository->getByName($name, $firstname, $biography);
 
         //Nous retourne la réponse dans la page 'books' avec une wildcard.
-        return $this->render('authors.html.twig', [
+        return $this->render('admin/authors/authors.html.twig', [
             'authors' => $authors,
             'name' => $name,
             'firstname' => $firstname,
@@ -95,7 +97,7 @@ class AuthorController extends AbstractController
 
     /**
      * On crée une nouvelle route pour créer un nouvel author.
-     * @Route("authors/create_author", name="create_author")
+     * @Route("admin/authors/create_author", name="admin_create_author")
      */
 
     //Je crée une méthode pour ajouter un author à ma BDD à l'aide en EntityManager qui sert à Gérer les Entités.
@@ -127,7 +129,7 @@ class AuthorController extends AbstractController
         // Les deux vont tout le temps ensemble.
 
         //Penser à bien fermer la méthode par une réponse (vardump / dump) pour tester si cela fonctionne.
-        return $this->render('author.html.twig', [
+        return $this->render('admin/author/author.html.twig', [
             'author' => $author,
             'message' => "Merci, votre auteur a bien était enregistré"]);
     }
@@ -140,12 +142,12 @@ class AuthorController extends AbstractController
 
     /**
      * je crée une nouvelle route pour acceder à mon formulaire de création d'un auteur.
-     * @Route("books/form_author",name="form_author")
+     * @Route("admin/books/form_author",name="admin_form_author")
      */
     // Je crée une méthode pour afficher le formulaire dans la page twig que je souhaite.
     public function createNewAuthor()
     {
-        return $this->render('ajout_auteur.html.twig');
+        return $this->render('admin/author/ajout_auteur.html.twig');
     }
 
 
@@ -156,18 +158,24 @@ class AuthorController extends AbstractController
  */
 
     /**
-     *
-     * @Route("authors/remove_author/{id}",name="remove_author")
+     *  Route vers l'url pour supprimer un auteur.
+     * @Route("admin/authors/remove_author/{id}",name="admin_remove_author")
      */
+
+    //Methode pour supprimer l'auteur à l'aide de l'entityManager.
     public function removeAuthor(AuthorRepository $authorRepository, EntityManagerInterface $entityManager, $id)
     {
+        //Je vais chercher une entité book via son id et je stock dans une variable.
         $author = $authorRepository->find($id);
 
+        // Je supprime la variable via la fonction remove de l'EM.
         $entityManager->remove($author);
+
+        //Ensuite j'utilise flush pour rendre effectif la suppression dans ma BDD
         $entityManager->flush();
 
-        return $this->redirectToRoute('authors');
-
+        // Redirect to route car il n'y a pas de twig exprès pour afficher la suppression.
+        return $this->redirectToRoute('amdin_authors');
     }
     /*
         ----------------------------------------------------------------------------------------------------------------------
@@ -175,38 +183,63 @@ class AuthorController extends AbstractController
         ----------------------------------------------------------------------------------------------------------------------
      */
 
+
     /**
-     *
-     * @Route("/books/modif_author", name="modif_author")
+     * @Route("admin/authors/update_author",name="admin_update_author")
      */
 
-    public function showModifAuthor()
+    public function updateAuthor (EntityManagerInterface $entityManager, Request $request)
     {
-        return
+
+        $author = new Author();
+        $message = null;
+
+        $authorForm = $this->createForm(AuthorType::class, $author);
+
+        if ($request->isMethod('Post')) {
+
+            $authorForm->handleRequest($request);
+
+            if ($authorForm->isValid()) {
+
+                $message = "Merci, votre enregistrement à bien était pris en compte.";
+                $entityManager->persist($author);
+                $entityManager->flush();
+            }
+        }
+
+        $authorFormView = $authorForm->createView();
+
+        return $this->render('admin/author/update_author.html.twig', [
+            'authorFormView' => $authorFormView,
+            'message' => $message
+        ]);
     }
 
-    public function modifAuthor(EntityManagerInterface $entityManager, Request $request)
+    /**
+     * @Route("admin/authors/update_form/{id}", name="admin_authors_update_form")
+     */
+
+    public function updateAuthorForm(AuthorRepository $authorRepository, EntityManagerInterface $entityManager, Request $request, $id)
     {
-        $author = new Author();
+        $message = null;
+        $author = $authorRepository->find($id);
+        $authorForm = $this->createForm(AuthorType::class, $author);
+        if ($request->isMethod('Post'))
+        {
+            $authorForm->handleRequest($request);
+            if ($authorForm->isValid()) {
+                $message = "Modification validée.";
+                $entityManager->persist($author);
+                $entityManager->flush();
+            }
+        }
 
-        $name= $request->request->get('name');
-        $firstname= $request->request->get('firstname');
-        $birthDate= $request->request->get('birthDate');
-        $deathDate= $request->request->get('deathDate');
-        $biography= $request->request->get('biography');
+        $authorFormView = $authorForm->createView();
 
-        $author->setName($name);
-        $author->setFirstname($firstname);
-        $author->setBirthDate(new \DateTime($birthDate));
-        $author->setDeathDate(new \DateTime($deathDate));
-        $author->setBiography($biography);
-
-        $entityManager->persist($author);
-
-        $entityManager->flush();
-
-        return $this->render('author.html.twig', [
-            'author' => $author,
-            'message' => "Merci, votre auteur a bien était mis à jour"]);
+        return $this->render('admin/author/update_author.html.twig', [
+            'authorFormView' => $authorFormView,
+            'message' => $message
+        ]);
     }
 }

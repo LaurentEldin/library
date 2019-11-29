@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block main %}
+    {{ form(bookFormView) }}
+    {% if message is not null %}
+        {{ message }}
+        <br>
+        <a href="{{path('admin_books')}}">Retour livres</a>
+    {% endif %}
+{% endblock %}
