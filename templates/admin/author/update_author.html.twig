@@ -1,8 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block main %}
-{{ form(authorFormView) }}
+{{ form_start(authorFormView) }}
     {% if message is not null %}
-        {{ message }}
-        <a href="{{path('admin_authors')}}">Retour auteurs</a>
+        <div class="messageok">
+            <p>{{ message }}</p>
+            <br>
+            <a href="{{path('admin_authors')}}">Retour auteurs</a>
+        </div>
     {% endif %}
+    {{ form_end(authorFormView) }}
 {% endblock %}

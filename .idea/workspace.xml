@@ -1,31 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0af17222-36ec-443e-8ab4-4fab7c16e4cd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/lapiscine.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/AuthorType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/BookType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/author/update_author.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/book/update_book.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+    <list default="true" id="0af17222-36ec-443e-8ab4-4fab7c16e4cd" name="Default Changelist" comment="Add forms and many many things ! Like foreign key.">
+      <change afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/library.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/library.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AuthorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/admin/authors/AuthorController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/BookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/admin/books/BookController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/admin/IndexController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/admin/books/BookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/admin/books/BookController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Author.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Author.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Book.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/BookType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/BookType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/BookRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/BookRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/ajout_auteur.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ajout_auteur.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/ajout_book.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ajout_book.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/author.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/author/author.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/authors.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/authors/authors.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/book.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/book/book.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/books.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/books/books.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/common/_header.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/common/_header.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/author/author.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/author/author.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/author/update_author.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/author/update_author.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/book/update_book.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/book/update_book.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/books/books.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/books/books.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -205,6 +198,8 @@
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/zendframework/zend-eventmanager" />
       <path value="$PROJECT_DIR$/vendor/zendframework/zend-code" />
+      <path value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/templating" />
     </include_path>
   </component>
   <component name="ProjectId" id="1TvdOFhs97KYWRFeoJ6Etguemhv" />
@@ -263,7 +258,7 @@
       <workItem from="1574344469706" duration="780000" />
       <workItem from="1574349397587" duration="498000" />
       <workItem from="1574349930416" duration="76529000" />
-      <workItem from="1574933983234" duration="19868000" />
+      <workItem from="1574933983234" duration="33690000" />
     </task>
     <task id="LOCAL-00001" summary="mise à jour css">
       <created>1574547460865</created>
@@ -321,7 +316,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574813202803</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Add forms and many many things ! Like foreign key.">
+      <created>1575025443505</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1575025443505</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -346,6 +348,7 @@
     <MESSAGE value="add searchbar for searching books by style and dispo and title." />
     <MESSAGE value="add searchbar for authors" />
     <MESSAGE value="add a lot of things. Specially add and supp books and authors. Maybe some CSS modifications. And the next things to do is to creat a method for doing update for books and authors. So the CRUD can be finished. Whit Creat / Read / Update / Delete mySQL." />
-    <option name="LAST_COMMIT_MESSAGE" value="add a lot of things. Specially add and supp books and authors. Maybe some CSS modifications. And the next things to do is to creat a method for doing update for books and authors. So the CRUD can be finished. Whit Creat / Read / Update / Delete mySQL." />
+    <MESSAGE value="Add forms and many many things ! Like foreign key." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add forms and many many things ! Like foreign key." />
   </component>
 </project>

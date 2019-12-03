@@ -244,6 +244,27 @@ class BookController extends AbstractController
         ]);
     }
 
+    /*
+     * ----------------------------------------------------------------------------------------------------------------------
+     * ---------------------------------             SHOW BOOK BY AUTHOR ID               -----------------------------------
+     * ----------------------------------------------------------------------------------------------------------------------
+    */
+
+    /**
+     * Creation d'une route pour afficher les livres d'un auteur grâce à son ID
+     * @Route("/admin/books/byAuthor/{id}", name="admin_books_by_author")
+     */
+
+    // Création de la fonction pour afficher les livres d'un auteur.
+    //On fait appel à la wildcard ID. Puis au Répo BOOK.
+    public function showBooksByAuthor($id, BookRepository $bookRepository)
+    {
+        //Je stock les auteurs via leurs iD dans ma variable Books.
+        $books = $bookRepository->findBy(['author' => $id]);
+
+        //Je retourne l'information sur ma page books.
+        return $this->render('admin/books/books.html.twig', ['books' => $books]);
+    }
 
     /*
      * ----------------------------------------------------------------------------------------------------------------------

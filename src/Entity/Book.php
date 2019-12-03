@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
@@ -18,6 +20,13 @@ class Book
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * )
+     * @Assert\NotNull
      */
     private $title;
 
@@ -37,7 +46,8 @@ class Book
     private $inStock;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Author")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Author", inversedBy="books")
+     * @Assert\NotNull
      */
     private $author;
 

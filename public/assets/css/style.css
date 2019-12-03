@@ -237,6 +237,17 @@ main{
     text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
     color: #f1f2f3;
 }
+.messageok{
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+    color: #f1f2f3;
+    font-size: 40px;
+}
+.messageok a{
+    color: white;
+}
+.messageok a:hover{
+    color: black;
+}
 /*
  ----------------------------------------------------------------------------------------------------------------------
  ---------------------------------                      MAIN INDEX                  -----------------------------------
@@ -287,9 +298,13 @@ main{
 }
 .mainerror p{
     font-size: 50px;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+
 }
 .backButton {
-    background-color: #e85c38;
+    background-color: #f1f2f3;
+    box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
     padding: 20px;
     margin: 30px;
     border-radius: 20px;

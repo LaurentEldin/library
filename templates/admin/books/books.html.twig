@@ -43,6 +43,11 @@
                 {% elseif book.inStock == false %}
                     <em><p><span class="red">indisponible</span></p></em>
                 {% endif %}
+                {% if book.author is not null %}
+                {{ book.author.fullName }}
+                {% else %}
+                    <em>Auteur non renseigné</em>
+                {% endif %}
             </div>
             <a href="{{ path('admin_book', {'id':book.id}) }}"><input type="button" value="plus d'info" class="seemoreinfo"></a>
             <a href="{{ path('admin_books_update_form', {'id':book.id}) }}"><input type="button" value="modifier" class="seemoreupdate"></a>

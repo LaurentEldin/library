@@ -29,7 +29,7 @@ class BookRepository extends ServiceEntityRepository
             //Traduire la requete en véritable requette SQL.
             ->where('book.style LIKE :style')
             ->andWhere('book.title LIKE :title')
-            ->andWhere('book.author LIKE :author')
+            ->andWhere('book.author = :author')
 
             //Executer la requette en BDD
             ->setParameter('style', '%' . $style . '%')

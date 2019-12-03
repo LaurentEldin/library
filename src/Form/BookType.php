@@ -63,7 +63,9 @@ class BookType extends AbstractType
                 'required' => null])
             ->add('author', EntityType::class, [
                 'class' => Author::class,
-                'choice_label' => 'fullName'
+                'choice_label' => 'fullName',
+                'required' => false,
+                'placeholder' => 'Choisissez un auteur'
             ])
             ->add('enregistrer', SubmitType::class);
     }

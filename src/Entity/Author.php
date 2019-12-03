@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AuthorRepository")
@@ -18,16 +21,32 @@ class Author
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * )
+     * /**
+     * @Assert\NotNull
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * )
+     * @Assert\NotNull
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\LessThan("Today")
      */
     private $birthDate;
 
@@ -38,8 +57,19 @@ class Author
 
     /**
      * @ORM\Column(type="string", length=500, nullable=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 500,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $biography;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Book", mappedBy="author")
+     */
+    private $books;
 
     public function getId(): ?int
     {
@@ -70,24 +100,24 @@ class Author
         return $this;
     }
 
-    public function getBirthDate(): ?\DateTimeInterface
+    public function getBirthDate(): ?DateTimeInterface
     {
         return $this->birthDate;
     }
 
-    public function setBirthDate(?\DateTimeInterface $birthDate): self
+    public function setBirthDate(?DateTimeInterface $birthDate): self
     {
         $this->birthDate = $birthDate;
 
         return $this;
     }
 
-    public function getDeathDate(): ?\DateTimeInterface
+    public function getDeathDate(): ?DateTimeInterface
     {
         return $this->deathDate;
     }
 
-    public function setDeathDate(?\DateTimeInterface $deathDate): self
+    public function setDeathDate(?DateTimeInterface $deathDate): self
     {
         $this->deathDate = $deathDate;
 
@@ -106,8 +136,30 @@ class Author
         return $this;
     }
 
-    public function getFullName() : ?string
+    public function getFullName(): ?string
     {
-        return  $this->name . " " . $this->firstname;
+        return $this->name . " " . $this->firstname;
     }
+
+    /**
+     * @param mixed $books
+     */
+    public function setBooks($books): void
+    {
+        $this->books = $books;
+    }
+
+    public function __construct()
+    {
+        $this->books = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBooks()
+    {
+        return $this->books;
+    }
+
 }
